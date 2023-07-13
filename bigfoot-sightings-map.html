@@ -1,0 +1,133 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://d3js.org/topojson.v3.min.js"></script>
+  <style>
+    .state {
+      fill: #ccc;
+      stroke: #000;
+    }
+    .tooltip {
+      position: absolute;
+      text-align: center;
+      padding: 10px;
+      background: #eee;
+      border: 0px;
+      border-radius: 8px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+    
+  <script>
+    var width = window.innerWidth,
+        height = window.innerHeight;
+        var sightings = {
+    "alabama": 95, 
+    "alaska": 21, 
+    "arizona": 85, 
+    "arkansas": 103, 
+    "california": 422, 
+    "colorado": 127, 
+    "connecticut": 21, 
+    "delaware": 5, 
+    "florida": 306, 
+    "georgia": 129, 
+    "idaho": 97, 
+    "illinois": 238, 
+    "indiana": 79, 
+    "iowa": 56, 
+    "kansas": 45, 
+    "kentucky": 114, 
+    "louisiana": 41, 
+    "maine": 18, 
+    "maryland": 35, 
+    "massachusetts": 29, 
+    "michigan": 217, 
+    "minnesota": 73, 
+    "mississippi": 22, 
+    "missouri": 159, 
+    "montana": 51, 
+    "nebraska": 15, 
+    "nevada": 7, 
+    "new hampshire": 14, 
+    "new jersey": 68, 
+    "new mexico": 42, 
+    "new york": 114, 
+    "north carolina": 90, 
+    "north dakota": 4, 
+    "ohio": 306, 
+    "oklahoma": 99, 
+    "oregon": 249, 
+    "pennsylvania": 120, 
+    "rhode island": 5, 
+    "south carolina": 43, 
+    "south dakota": 13, 
+    "tennessee": 96, 
+    "texas": 231, 
+    "utah": 59, 
+    "vermont": 10, 
+    "virginia": 81, 
+    "washington": 610, 
+    "west virginia": 104, 
+    "wisconsin": 87, 
+    "wyoming": 27
+};
+   
+    var color = d3.scaleQuantize([1, Math.max(...Object.values(sightings))], d3.schemeReds[9]);
+    var tooltip = d3.select("body").append("div").attr("class", "tooltip").style("opacity", 0);
+
+    
+    d3.json("https://raw.githubusercontent.com/markmarkoh/datamaps/master/src/js/data/usa.topo.json").then(function(us) {
+      var projection = d3.geoAlbersUsa().fitSize([width, height], topojson.feature(us, us.objects.usa));
+      var path = d3.geoPath().projection(projection);
+
+      d3.select("body").append("svg").attr("width", width).attr("height", height)
+        .selectAll("path")
+        .data(topojson.feature(us, us.objects.usa).features)
+        .enter().append("path")
+        .attr("class", "state")
+        .attr("d", path)
+        .attr("fill", function(d) { return color(sightings[d.properties.name.toLowerCase()] || 0); })
+        .on("mouseover", function(d) {
+          tooltip.transition().duration(200).style("opacity", .9);
+          tooltip.html(d.properties.name + ": " + (sightings[d.properties.name.toLowerCase()] || 0) + " sightings")
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY - 28) + "px");
+        })
+        .on("mouseout", function(d) {
+          tooltip.transition().duration(500).style("opacity", 0);
+        })
+        .on("click", function(d) {
+          window.location.href = d.properties.name.toLowerCase().replace(" ", "-") + ".html";
+        });
+// Append path elements for the states
+var states = d3.select("body").append("svg").attr("width", width).attr("height", height)
+  .selectAll("path")
+  .data(topojson.feature(us, us.objects.usa).features)
+  .enter().append("path")
+  .attr("class", "state")
+  .attr("d", path)
+  .attr("fill", function(d) { return color(sightings[d.properties.name.toLowerCase()] || 0); })
+  /* ... */
+  
+// Append text elements for the sightings counts
+states.data(topojson.feature(us, us.objects.usa).features)
+  .enter().append("text")
+  .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+  .attr("dy", ".35em")
+  .text(function(d) { return sightings[d.properties.name.toLowerCase()] || 0; });
+
+        
+    });
+  </script>
+</body>
+</html>
+
+       

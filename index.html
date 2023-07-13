@@ -18,11 +18,282 @@
         #logo {
             width: 200px;
         }
+        .navbar {
+            background-color: #f8f9fa;
+        }
+        .navbar-brand {
+            padding: 0;
+        }
+        .navbar-brand img {
+            height: 50px;
+            margin: 5px;
+        }
+        .navbar-nav {
+            justify-content: flex-end;
+        }
+        .nav-link {
+            margin-right: 15px;
+        }
     </style>
 </head>
 <body>
-    <!-- Add the logo -->
-    <img id="logo" src="https://softr-prod.imgix.net/applications/872a767c-c843-46be-8902-0d22bf5a9f57/assets/6951a945-9d09-4a95-b596-7379afbf9313.png" alt="Logo">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+         
+            <a class="navbar-brand" href="/index.html">
+                <img src="https://softr-prod.imgix.net/applications/872a767c-c843-46be-8902-0d22bf5a9f57/assets/6951a945-9d09-4a95-b596-7379afbf9313.png" alt="Logo">
+            </a>
+            
+            <!-- Toggle Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/bigfoot-sightings-map.html">Bigfoot Sightings Map</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html">US Bigfoot Sightings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ohio.html">Ohio Bigfoot Sightings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/texas.html">Texas Bigfoot Sightings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://form.typeform.com/to/Mfy0bf?typeform-source=www.bigfootfindr.com" target="_blank">Submit a Sighting</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1>Bigfoot Sightings by State</h1>
+    <!-- Add a search box -->
+    <input class="form-control" id="search" type="text" placeholder="Search by state..">
+    <br>
+    <!-- Your table -->
+    <table border="1" class="dataframe">
+        <tr>
+            <td><a href="/washington.html">Washington</a></td>
+            <td>610</td>
+          </tr>
+          <tr>
+            <td><a href="/california.html">California</a></td>
+            <td>422</td>
+          </tr>
+          <tr>
+            <td><a href="/florida.html">Florida</a></td>
+            <td>306</td>
+          </tr>
+          <tr>
+            <td><a href="/ohio.html">Ohio</a></td>
+            <td>306</td>
+          </tr>
+          <tr>
+            <td><a href="/oregon.html">Oregon</a></td>
+            <td>249</td>
+          </tr>
+          <tr>
+            <td><a href="/illinois.html">Illinois</a></td>
+            <td>238</td>
+          </tr>
+          <tr>
+            <td><a href="/texas.html">Texas</a></td>
+            <td>231</td>
+          </tr>
+          <tr>
+            <td><a href="/michigan.html">Michigan</a></td>
+            <td>217</td>
+          </tr>
+          <tr>
+            <td><a href="/missouri.html">Missouri</a></td>
+            <td>159</td>
+          </tr>
+          <tr>
+            <td><a href="/georgia.html">Georgia</a></td>
+            <td>129</td>
+          </tr>
+          <tr>
+            <td><a href="/colorado.html">Colorado</a></td>
+            <td>127</td>
+          </tr>
+          <tr>
+            <td><a href="/pennsylvania.html">Pennsylvania</a></td>
+            <td>120</td>
+          </tr>
+          <tr>
+            <td><a href="/new-york.html">New York</a></td>
+            <td>114</td>
+          </tr>
+          <tr>
+            <td><a href="/kentucky.html">Kentucky</a></td>
+            <td>114</td>
+          </tr>
+          <tr>
+            <td><a href="/west-virginia.html">West Virginia</a></td>
+            <td>104</td>
+          </tr>
+          <tr>
+            <td><a href="/arkansas.html">Arkansas</a></td>
+            <td>103</td>
+          </tr>
+          <tr>
+            <td><a href="/oklahoma.html">Oklahoma</a></td>
+            <td>99</td>
+          </tr>
+          <tr>
+            <td><a href="/idaho.html">Idaho</a></td>
+            <td>97</td>
+          </tr>
+          <tr>
+            <td><a href="/tennessee.html">Tennessee</a></td>
+            <td>96</td>
+          </tr>
+          <tr>
+            <td><a href="/alabama.html">Alabama</a></td>
+            <td>95</td>
+          </tr>
+          <tr>
+            <td><a href="/north-carolina.html">North Carolina</a></td>
+            <td>90</td>
+          </tr>
+          <tr>
+            <td><a href="/wisconsin.html">Wisconsin</a></td>
+            <td>87</td>
+          </tr>
+          <tr>
+            <td><a href="/arizona.html">Arizona</a></td>
+            <td>85</td>
+          </tr>
+          <tr>
+            <td><a href="/virginia.html">Virginia</a></td>
+            <td>81</td>
+          </tr>
+          <tr>
+            <td><a href="/indiana.html">Indiana</a></td>
+            <td>79</td>
+          </tr>
+          <tr>
+            <td><a href="/minnesota.html">Minnesota</a></td>
+            <td>73</td>
+          </tr>
+          <tr>
+            <td><a href="/new-jersey.html">New Jersey</a></td>
+            <td>68</td>
+          </tr>
+          <tr>
+            <td><a href="/utah.html">Utah</a></td>
+            <td>59</td>
+          </tr>
+          <tr>
+            <td><a href="/iowa.html">Iowa</a></td>
+            <td>56</td>
+          </tr>
+          <tr>
+            <td><a href="/montana.html">Montana</a></td>
+            <td>51</td>
+          </tr>
+          <tr>
+            <td><a href="/kansas.html">Kansas</a></td>
+            <td>45</td>
+          </tr>
+          <tr>
+            <td><a href="/south-carolina.html">South Carolina</a></td>
+            <td>43</td>
+          </tr>
+          <tr>
+            <td><a href="/new-mexico.html">New Mexico</a></td>
+            <td>42</td>
+          </tr>
+          <tr>
+            <td><a href="/louisiana.html">Louisiana</a></td>
+            <td>41</td>
+          </tr>
+          <tr>
+            <td><a href="/maryland.html">Maryland</a></td>
+            <td>35</td>
+          </tr>
+          <tr>
+            <td><a href="/massachusetts.html">Massachusetts</a></td>
+            <td>29</td>
+          </tr>
+          <tr>
+            <td><a href="/wyoming.html">Wyoming</a></td>
+            <td>27</td>
+          </tr>
+          <tr>
+            <td><a href="/mississippi.html">Mississippi</a></td>
+            <td>22</td>
+          </tr>
+          <tr>
+            <td><a href="/connecticut.html">Connecticut</a></td>
+            <td>21</td>
+          </tr>
+          <tr>
+            <td><a href="/alaska.html">Alaska</a></td>
+            <td>21</td>
+          </tr>
+          <tr>
+            <td><a href="/maine.html">Maine</a></td>
+            <td>18</td>
+          </tr>
+          <tr>
+            <td><a href="/nebraska.html">Nebraska</a></td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td><a href="/new-hampshire.html">New Hampshire</a></td>
+            <td>14</td>
+          </tr>
+          <tr>
+            <td><a href="/south-dakota.html">South Dakota</a></td>
+            <td>13</td>
+          </tr>
+          <tr>
+            <td><a href="/vermont.html">Vermont</a></td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td><a href="/nevada.html">Nevada</a></td>
+            <td>7</td>
+          </tr>
+          <tr>
+            <td><a href="/delaware.html">Delaware</a></td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td><a href="/rhode-island.html">Rhode Island</a></td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td><a href="/north-dakota.html">North Dakota</a></td>
+            <td>4</td>
+          </tr>
+    </table>
+
+    <!-- Include jQuery and Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+        // JavaScript to filter table based on search
+        $(document).ready(function(){
+            $("#search").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("table tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
     <h1>Bigfoot Sightings by State</h1>
     <!-- Add a search box -->
     <input class="form-control" id="search" type="text" placeholder="Search by state..">
