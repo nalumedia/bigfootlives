@@ -1,0 +1,175 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Bigfoot Sightings in Idaho</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <style>
+            table { 
+                width: 100%; 
+                border-collapse: collapse; 
+            }
+            th, td { 
+                padding: 15px; 
+                text-align: left; 
+                border-bottom: 1px solid #ddd;
+            }
+            tr:hover {background-color: #f5f5f5;}
+            #logo {
+                width: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <img id="logo" src="https://softr-prod.imgix.net/applications/872a767c-c843-46be-8902-0d22bf5a9f57/assets/6951a945-9d09-4a95-b596-7379afbf9313.png" alt="Logo">
+        <h1>Bigfoot Sightings in Idaho</h1>
+        <input class="form-control" id="search" type="text" placeholder="Search by county..">
+        <br>
+        <table border="1" class="dataframe">
+        <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>STATE</th>
+      <th>COUNTY</th>
+      <th>sightings</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Idaho</td>
+      <td>Adams County</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Bear Lake County</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Benewah County</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Bingham County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Boise County</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Bonner County</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Bonneville County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Boundary County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Camas County</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Cassia County</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Clark County</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Clearwater County</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Custer County</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Elmore County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Idaho County</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Kootenai County</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Latah County</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Lemhi County</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Madison County</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Nez Perce County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Oneida County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Owyhee County</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Shoshone County</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>Valley County</td>
+      <td>13</td>
+    </tr>
+  </tbody>
+</table>
+        </table>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#search").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("table tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+        </script>
+    </body>
+    </html>
+    

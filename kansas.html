@@ -1,0 +1,205 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Bigfoot Sightings in Kansas</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <style>
+            table { 
+                width: 100%; 
+                border-collapse: collapse; 
+            }
+            th, td { 
+                padding: 15px; 
+                text-align: left; 
+                border-bottom: 1px solid #ddd;
+            }
+            tr:hover {background-color: #f5f5f5;}
+            #logo {
+                width: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <img id="logo" src="https://softr-prod.imgix.net/applications/872a767c-c843-46be-8902-0d22bf5a9f57/assets/6951a945-9d09-4a95-b596-7379afbf9313.png" alt="Logo">
+        <h1>Bigfoot Sightings in Kansas</h1>
+        <input class="form-control" id="search" type="text" placeholder="Search by county..">
+        <br>
+        <table border="1" class="dataframe">
+        <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>STATE</th>
+      <th>COUNTY</th>
+      <th>sightings</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Kansas</td>
+      <td>Bourbon County</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Cherokee County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Coffey County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Crawford County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Douglas County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Geary County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Jackson County</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Jefferson County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Johnson County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Kingman County</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Labette County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Leavenworth County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>McPherson County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Miami County</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Mitchell County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Montgomery County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Morris County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Neosho County</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Osage County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Ottawa County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Pratt County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Rice County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Riley County</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Rooks County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Saline County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Sedgwick County</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Shawnee County</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Sumner County</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Woodson County</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>Wyandotte County</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+        </table>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#search").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("table tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+        </script>
+    </body>
+    </html>
+    
