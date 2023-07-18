@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shooter Game</title>
+</head>
+<body>
+    <h1>Shooter Game</h1>
+    <button id="startButton">Start Game</button>
+    <p id="output"></p>
+    <button id="shootButton" style="display: none;">Shoot</button>
+    <button id="passButton" style="display: none;">Pass</button>
+    <p id="score">Score: 0</p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script>
+        var shots;
+        var currentShot;
+        var score = 0;
+
+        document.getElementById("startButton").addEventListener("click", function() {
+            Papa.parse('filtered_pbpstr.csv', {
+                download: true,
+                header: true,
+                dynamicTyping: true,
+                complete: function(results) {
+                    shots = results.data;
+                    playRound();
+                    document.getElementById("shootButton").style.display = "inline";
+                    document.getElementById("passButton").style.display = "inline";
+                }
+            });
+        });
+
+        document.getElementById("shootButton").addEventListener("click", function() {
+            checkGuess("shoot");
+            playRound();
+        });
+
+        document.getElementById("passButton").addEventListener("click", function() {
+            checkGuess("pass");
+            playRound();
+        });
+
+        function playRound() {
+            currentShot = shots[Math.floor(Math.random() * shots.length)];
+            document.getElementById("output").textContent = 
+                currentShot.shooter + " from " + currentShot.team + " vs " + currentShot.opponent + " has the ball.\n" +
+                "Time left: " + currentShot.time_left + "\n" +
+                "Shot type: " + (currentShot.fg3a ? "3 pointer" : "field goal") + "\n" +
+                "Expected Value (EV): " + currentShot.ev + "\n" +
+                "Defending players: " + currentShot.d1 + ", " + currentShot.d2 + ", " + currentShot.d3 + ", " + currentShot.d4 + ", " + currentShot.d5;
+        }
+
+        function checkGuess(guess) {
+            if ((guess === "shoot" && currentShot.missed === 0) || (guess === "pass" && currentShot.missed === 1)) {
+                score++;
+                alert("Congrats! You guessed correct.");
+            } else {
+                alert("Bummer, you chose poorly.");
+            }
+            document.getElementById("score").textContent = "Score: " + score;
+        }
+    </script>
+</body>
+</html>

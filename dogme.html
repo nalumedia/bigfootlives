@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Dog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        #dog-data {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <button class="btn btn-primary mt-5" onclick="getRandomDog()">Show Me  New Dog</button>
+            </div>
+        </div>
+        <div class="row" id="dog-data"></div>
+    </div>
+
+    <script>
+        function getRandomDog() {
+            fetch('https://api.thedogapi.com/v1/images/search', {
+                headers: {
+                    'x-api-key': 'live_GeSUb5lkw5g89d2jVHTE2vd6fS7S9ZLvPbIkccAiM3dvlNxl5Wy4G5l9f42cbemT' // Replace 'your-api-key' with the Dog API key
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const dogData = data[0];
+                const dogDataDiv = document.getElementById('dog-data');
+
+                // Clear any existing data
+                dogDataDiv.innerHTML = '';
+
+                // Create and append the dog image
+                const imgDiv = document.createElement('div');
+                imgDiv.className = 'col text-center';
+                const img = document.createElement('img');
+                img.src = dogData.url;
+                img.width = 300;
+                imgDiv.appendChild(img);
+
+                // Create and append the data
+                const dataDiv = document.createElement('div');
+                dataDiv.className = 'col';
+                const pre = document.createElement('pre');
+                if (dogData.breeds && dogData.breeds.length > 0) {
+                    pre.textContent = `Breed: ${dogData.breeds[0].name}\nTemperament: ${dogData.breeds[0].temperament}`;
+                } else {
+                    pre.textContent = `No breed information available for this image.`;
+                }
+
+                dataDiv.appendChild(pre);
+
+                dogDataDiv.appendChild(imgDiv);
+                dogDataDiv.appendChild(dataDiv);
+            });
+        }
+    </script>
+</body>
+</html>
