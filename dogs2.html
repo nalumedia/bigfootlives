@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Dog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        #dog-data {
+            margin-top: 20px;
+        }
+        pre {
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <button class="btn btn-primary mt-5" onclick="getRandomDog()">Show Me a New Dog 🐶</button>
+            </div>
+        </div>
+        <div class="row" id="dog-data"></div>
+    </div>
+
+    <script>
+        function getRandomDog() {
+            // First, get a list of all breeds
+            fetch('https://api.thedogapi.com/v1/breeds', {
+                headers: {
+                    'x-api-key': 'live_GeSUb5lkw5g89d2jVHTE2vd6fS7S9ZLvPbIkccAiM3dvlNxl5Wy4G5l9f42cbemT'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Randomly select a breed from the list
+                const randomBreed = data[Math.floor(Math.random() * data.length)];
+
+                // Then, get an image of the selected breed
+                fetch(`https://api.thedogapi.com/v1/images/search?breed_id=${randomBreed.id}`, {
+                    headers: {
+                        'x-api-key': 'live_GeSUb5lkw5g89d2jVHTE2vd6fS7S9ZLvPbIkccAiM3dvlNxl5Wy4G5l9f42cbemT'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const dogData = data[0];
+                    const dogDataDiv = document.getElementById('dog-data');
+
+                    // Clear any existing data
+                    dogDataDiv.innerHTML = '';
+
+                    // Create and append the dog image
+                    const imgDiv = document.createElement('div');
+                    imgDiv.className = 'col text-center';
+                    const img = document.createElement('img');
+                    img.src = dogData.url;
+                    img.width = 300;
+                    imgDiv.appendChild(img);
+
+                    // Create and append the data
+                    const dataDiv = document.createElement('div');
+                    dataDiv.className = 'col';
+                    const pre = document.createElement('pre');
+                    pre.textContent = `🐶 This breed is a: ${dogData.breeds[0].name}\n💕 ${dogData.breeds[0].name} is ${dogData.breeds[0].temperament}`;
+
+                    // Create prompt for GPT-3
+                    const prompt = `Write me a story about a girl named Avery playing with this cute, cuddly dog. The dog's breed is: ${dogData.breeds[0].name}. A second grader should be able to read the text returned. The story should contain something about how Avery played with the dog doing something that dogs love to do. The story should end with a tip for Avery about how to be a great dog trainer and a great girl.`;
+
+                    // Call OpenAI GPT-3 API
+                    fetch('https://api.openai.com/v1/engines/text-davinci-002/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer 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'
+                        },
+                        body: JSON.stringify({
+                            'prompt': prompt,
+                            'max_tokens': 1000
+                        })
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`OpenAI API returned HTTP ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Append the generated text to the pre element
+                        pre.textContent += `\n\n${data.choices[0].text}`;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+
+                    dataDiv.appendChild(pre);
+
+                    dogDataDiv.appendChild(imgDiv);
+                    dogDataDiv.appendChild(dataDiv);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

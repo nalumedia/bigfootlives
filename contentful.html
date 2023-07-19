@@ -1,0 +1,30 @@
+<script>
+    const SPACE_ID = '6c3fc2sc4pyza';
+    const ACCESS_TOKEN = 'lPfs429vZG9JnuMATW31PQ7XfnZZZ5KYPcCljJRJvbY';
+
+    const ENDPOINT = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}`;
+
+    fetch(ENDPOINT)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);  // This will output the data into your browser's console for you to inspect
+
+            if (data.items && data.items.length > 0) {
+                let firstEntry = data.items[0].fields;
+
+                if (firstEntry && firstEntry.sometext) {
+                    document.getElementById('content').innerText = firstEntry.sometext;
+                } else {
+                    console.log('Could not find expected fields in the first entry.');
+                }
+            } else {
+                console.log('No items found in the response.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+</script>
